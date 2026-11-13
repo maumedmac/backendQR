@@ -17,8 +17,10 @@ app.add_middleware(
 )
 
 # Obtener la URL de conexión a PostgreSQL desde las variables de entorno de Render
-DATABASE_URL = os.environ.get("postgresql://qr_attendance_db_rih4_user:lgg4UlNdjSSpGnaLmkniCgKHMtBnH8xk@dpg-dbi5psifngtc73cck770-a/qr_attendance_db_rih4")
-
+DATABASE_URL = os.getenv(
+    "DATABASE_URL", 
+    "postgresql://qr_attendance_db_rih4_user:lgg4UlNdjSSpGnaLmkniCgKHMtBnH8xk@dpg-dbi5psifngtc73cck770-a.oregon-postgres.render.com/qr_attendance_db_rih4"
+)
 def get_db_connection():
     conn = psycopg2.connect(DATABASE_URL, sslmode='require')
     return conn
